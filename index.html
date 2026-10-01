@@ -5,39 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy · I'm Learning</title>
 <meta name="description" content="Privacy policy for I'm Learning, an offline flashcard app for learning foreign words.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F4F6FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0D11" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="icon-512.png">
 <style>
-  /* The app's own Material 3 scheme, grown from the seed #4C6FFF that
-     lib/main.dart passes to colorSchemeSeed. */
+  /* The app's two typefaces, served from beside this page: copies of
+     assets/fonts/, each one variable file. Nothing here is fetched from
+     another site, which a privacy policy should be able to say of itself. */
+  @font-face {
+    font-family: "Onest";
+    src: url("fonts/Onest.ttf") format("truetype");
+    font-weight: 100 900;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Golos Text";
+    src: url("fonts/GolosText.ttf") format("truetype");
+    font-weight: 400 900;
+    font-display: swap;
+  }
+
+  /* The app's two looks, read off lib/theme/app_theme.dart: Soft study in
+     the light, Focus dark in the dark. The names are the kit's tokens. A
+     retune there is a retune here by hand. */
   :root {
-    --surface: #fbf8ff;
-    --surface-container: #f0edf5;
-    --surface-container-high: #e9e7ef;
-    --on-surface: #1a1b21;
-    --on-surface-variant: #454650;
-    --primary: #4f5b92;
-    --on-primary: #ffffff;
-    --primary-container: #dce1ff;
-    --on-primary-container: #384479;
-    --secondary-container: #dfe1f9;
-    --on-secondary-container: #171b2c;
-    --outline-variant: #c6c6d0;
+    --font: "Onest", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    --title-weight: 700;
+
+    --page: #f4f6fb;
+    --card: #ffffff;
+    --ink: #171a22;
+    --ink-2: #6c7385;
+    --label: #171a22;
+    --accent: #4c5fd5;
+    --on-accent: #ffffff;
+    --track: #e6eaf2;
+    --marker: #b2b8c6;
+
+    --known-fill: #e7f6f0;
+    --known-ink: #14795c;
+
+    --today-fill: #eaedff;       --today-ink: #4c5fd5;
+    --stream-fill: #e2f5ee;      --stream-ink: #18a77e;
+    --pairs-fill: #f0ebff;       --pairs-ink: #7c5ce0;
+    --translation-fill: #fff0e0; --translation-ink: #e07c10;
+    --word-fill: #e2f6f2;        --word-ink: #14917d;
+
+    /* Soft study separates a surface from the page with a shadow. */
+    --shadow-row: 0 2px 10px rgba(23, 26, 34, 0.05);
+    --shadow-primary: 0 3px 16px rgba(23, 26, 34, 0.07);
+    --shadow-pill: 0 2px 8px rgba(23, 26, 34, 0.07);
+    --shadow-accent: 0 6px 16px rgba(76, 95, 213, 0.34);
+
     color-scheme: light dark;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --surface: #121318;
-      --surface-container: #1e1f25;
-      --surface-container-high: #292a2f;
-      --on-surface: #e3e1e9;
-      --on-surface-variant: #c6c6d0;
-      --primary: #b8c4ff;
-      --on-primary: #1f2d61;
-      --primary-container: #374479;
-      --on-primary-container: #dce1ff;
-      --secondary-container: #414659;
-      --on-secondary-container: #dee1f9;
-      --outline-variant: #45464f;
+      --font: "Golos Text", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      --title-weight: 600;
+
+      --page: #0b0d11;
+      --card: #202329;
+      --ink: #f3f5f8;
+      --ink-2: #838b9b;
+      --label: #a7aebc;
+      --accent: #2fd48f;
+      --on-accent: #07130e;
+      --track: #191d25;
+      --marker: #4e5563;
+
+      --known-fill: #11251c;
+      --known-ink: #57dda6;
+
+      --today-fill: rgba(47, 212, 143, 0.14);       --today-ink: #2fd48f;
+      --stream-fill: rgba(139, 124, 246, 0.16);     --stream-ink: #a493ff;
+      --pairs-fill: rgba(47, 212, 143, 0.14);       --pairs-ink: #2fd48f;
+      --translation-fill: rgba(245, 181, 74, 0.15); --translation-ink: #f5b54a;
+      --word-fill: rgba(96, 165, 250, 0.15);        --word-ink: #60a5fa;
+
+      /* Focus dark steps its surface colour and draws no shadow at all. */
+      --shadow-row: none;
+      --shadow-primary: none;
+      --shadow-pill: none;
+      --shadow-accent: none;
     }
   }
 
@@ -45,151 +98,307 @@
 
   body {
     margin: 0;
-    background: var(--surface);
-    color: var(--on-surface);
-    font-family: Roboto, "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--font);
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
   }
 
+  /* The Learning screen's own measures: a 20 gutter, 22 between sections,
+     11 between the items of one and between a label and what it heads. */
   .page {
-    max-width: 46rem;
+    max-width: 44rem;
     margin: 0 auto;
-    padding: 24px 16px 64px;
+    padding: 28px 20px 64px;
   }
 
-  /* The app bar, as the app draws it: title left, nothing else. */
-  header {
-    padding: 16px 0 24px;
+  /* ------------------------------------------------------------- header */
+
+  .app {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 22px;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
-  header .app {
-    font-size: 0.8125rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--on-surface-variant);
-    margin: 0 0 4px;
+  /* The launcher icon is drawn on its own white ground, so it stands as a
+     tile in both looks. */
+  .app img {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: #ffffff;
+    box-shadow: var(--shadow-row);
   }
 
   h1 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    line-height: 1.25;
     margin: 0;
+    font-size: 2.125rem;
+    font-weight: var(--title-weight);
+    letter-spacing: -0.035em;
+    line-height: 1.15;
   }
 
-  .updated {
-    color: var(--on-surface-variant);
-    font-size: 0.875rem;
-    margin-top: 8px;
+  .pill {
+    display: inline-block;
+    margin: 14px 0 0;
+    padding: 5px 13px;
+    border-radius: 999px;
+    background: var(--card);
+    box-shadow: var(--shadow-pill);
+    color: var(--ink-2);
+    font-size: 0.8125rem;
+    font-weight: 500;
   }
 
-  /* The summary sits in the primary container, the way the "Let's recall"
-     row does on the learning screen. */
+  /* ------------------------------------------------------------ surfaces */
+
+  /* The summary is the page's flashcard: the one surface with the larger
+     radius and the deeper shadow. */
   .summary {
-    background: var(--secondary-container);
-    color: var(--on-secondary-container);
-    border-radius: 16px;
-    padding: 20px 24px;
-    margin: 8px 0 32px;
+    margin: 22px 0 0;
+    padding: 24px;
+    border-radius: 24px;
+    background: var(--card);
+    box-shadow: var(--shadow-primary);
   }
 
-  .summary p { margin: 0; }
-  .summary p + p { margin-top: 12px; }
-
-  section {
-    background: var(--surface-container);
-    border-radius: 16px;
-    padding: 4px 24px 20px;
-    margin-bottom: 16px;
+  .summary .lead {
+    font-size: 1.0625rem;
+    line-height: 1.55;
   }
 
+  .summary .more { color: var(--ink-2); }
+
+  /* What a right answer wears in the app: the known tones, with the faint
+     ring of their own ink every outcome surface draws. */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 5px 13px 5px 10px;
+    border-radius: 999px;
+    background: var(--known-fill);
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--known-ink) 45%, transparent);
+    color: var(--known-ink);
+    font-size: 0.84375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .chips svg { width: 15px; height: 15px; stroke-width: 2.6; }
+
+  /* A section label, as SectionHeader sets one. */
   h2 {
+    margin: 30px 4px 11px;
+    color: var(--label);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  /* One row of a list: a plain card with a tinted icon tile, as a game
+     tile is drawn. */
+  .card {
+    margin: 0 0 11px;
+    padding: 20px;
+    border-radius: 20px;
+    background: var(--card);
+    box-shadow: var(--shadow-row);
+  }
+
+  .card header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin: 0 0 14px;
+  }
+
+  .tile {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .tile svg { width: 21px; height: 21px; }
+
+  .today       { background: var(--today-fill);       color: var(--today-ink); }
+  .stream      { background: var(--stream-fill);      color: var(--stream-ink); }
+  .pairs       { background: var(--pairs-fill);       color: var(--pairs-ink); }
+  .translation { background: var(--translation-fill); color: var(--translation-ink); }
+  .word        { background: var(--word-fill);        color: var(--word-ink); }
+
+  svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  h3 {
+    margin: 0;
     font-size: 1.125rem;
     font-weight: 600;
-    margin: 24px 0 8px;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
   }
 
-  p { margin: 0 0 12px; }
-  p:last-child, ul:last-child { margin-bottom: 0; }
+  /* ---------------------------------------------------------------- text */
 
+  p { margin: 0 0 12px; }
   ul { margin: 0 0 12px; padding-left: 1.25rem; }
-  li { margin-bottom: 6px; }
-  li:last-child { margin-bottom: 0; }
+  li { margin-bottom: 7px; }
+  li::marker { color: var(--marker); }
+  p:last-child, ul:last-child, li:last-child { margin-bottom: 0; }
 
   strong { font-weight: 600; }
 
   code {
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--track);
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    font-size: 0.9em;
-    background: var(--surface-container-high);
-    border-radius: 4px;
-    padding: 1px 5px;
+    font-size: 0.875em;
   }
 
-  a { color: var(--primary); }
+  a { color: var(--accent); }
 
-  .contact {
-    background: var(--primary-container);
-    color: var(--on-primary-container);
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
+
+  /* The screen's one call to act, as the app's filled button draws it. */
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 54px;
+    margin-top: 16px;
+    padding: 10px 18px;
+    border-radius: 15px;
+    background: var(--accent);
+    box-shadow: var(--shadow-accent);
+    color: var(--on-accent);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .button svg { flex: none; width: 19px; height: 19px; }
 
   footer {
-    color: var(--on-surface-variant);
-    font-size: 0.875rem;
+    margin-top: 34px;
+    color: var(--label);
+    font-size: 0.8125rem;
     text-align: center;
-    padding-top: 32px;
-    border-top: 1px solid var(--outline-variant);
-    margin-top: 32px;
+  }
+
+  @media (max-width: 26rem) {
+    h1 { font-size: 1.875rem; }
+    .summary { padding: 20px; }
+  }
+
+  @media print {
+    .summary, .card, .pill, .app img, .button { box-shadow: none; }
+    .card { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <header>
-    <p class="app">I'm Learning</p>
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: 9 September 2026</p>
-  </header>
+  <p class="app"><img src="icon-512.png" width="44" height="44" alt="">I'm Learning</p>
+  <h1>Privacy Policy</h1>
+  <p class="pill">Last updated: 1 October 2026</p>
 
   <div class="summary">
-    <p><strong>I'm Learning does not collect any data about you.</strong> It has
-    no accounts, no servers, and no internet access. Everything you put into it
-    stays on your device.</p>
-    <p>The sections below say the same thing in more detail, and are honest
-    about the one place your words touch software this app does not control.</p>
+    <p class="lead"><strong>I'm Learning does not collect any data about
+    you.</strong> It has no accounts, no servers, and no internet access. The
+    app sends nothing to anyone: what you put into it is kept on your
+    device.</p>
+    <p class="more">The sections below say the same thing in more detail, and
+    are honest about the two places your cards touch software this app does
+    not control: your device's speech engine, and your device's own backup.</p>
+    <ul class="chips">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No account</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No internet access</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No ads</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No tracking</li>
+    </ul>
   </div>
 
-  <section>
-    <h2>What the app keeps</h2>
-    <p>I'm Learning stores the material you create so it can teach it back to
-    you:</p>
+  <h2>On your device</h2>
+
+  <section class="card">
+    <header>
+      <span class="tile today"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span>
+      <h3>What the app keeps</h3>
+    </header>
+    <p>I'm Learning stores what you create so it can teach it back to you:</p>
     <ul>
       <li>the languages you have added</li>
-      <li>the cards you have made and their names</li>
-      <li>the words and translations you have entered</li>
-      <li>your progress for each word — its level, its streak, and when it is
-      next due</li>
-      <li>your preferences, such as the interface language and whether the dark
-      theme is on</li>
+      <li>your cards — each term, its translation, and any note you gave
+      it</li>
+      <li>each card's progress — how well you have recalled it and when you
+      last answered it, which is what decides the cards you are shown each
+      day</li>
+      <li>the days you practised, which the streak and the calendar are drawn
+      from</li>
+      <li>your preferences, such as the interface language, the dark theme,
+      the reminder's time and how the games are set up</li>
+      <li>recordings of your cards' terms, made by your device's speech engine
+      so a card can be read aloud without a wait. They are held in the app's
+      cache, and <strong>Cached audio</strong> in Settings shows their size
+      and clears them.</li>
     </ul>
-    <p>All of it is held on your device and nowhere else. None of it is sent to
-    the developer or to anyone else, because the app has no way to send
+    <p>All of it is held by the app on your device. None of it is sent to the
+    developer or to anyone else, because the app has no way to send
     anything.</p>
   </section>
 
-  <section>
-    <h2>What the app does not do</h2>
+  <section class="card">
+    <header>
+      <span class="tile pairs"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/></svg></span>
+      <h3>What the app does not do</h3>
+    </header>
     <p>These are not promises about intent. They are properties of how the app
-    is built, and you can check them against the app's listing on Google Play:</p>
+    is built, and you can check them against the app's listing on Google
+    Play:</p>
     <ul>
       <li><strong>No internet access.</strong> The published app does not
       request the <code>INTERNET</code> permission, so it cannot transmit
       anything, to anyone, ever.</li>
-      <li><strong>No permissions at all.</strong> It asks for no access to your
-      location, camera, microphone, contacts, files, or phone.</li>
+      <li><strong>No access to your personal data.</strong> It asks for no
+      access to your location, camera, microphone, contacts, storage, or phone.
+      Saving and opening a file uses your device's own file picker, which hands
+      the app the one file you chose and nothing else — no permission is asked
+      for, and none is held afterwards. The only permissions the app holds are
+      the ones its daily reminder needs, described below.</li>
       <li><strong>No accounts and no sign-in.</strong> You are never asked for a
       name, an email address, or a password.</li>
       <li><strong>No advertising.</strong> There are no ads and no advertising
@@ -200,36 +409,96 @@
     </ul>
   </section>
 
-  <section>
-    <h2>Reading words aloud</h2>
-    <p>The app can pronounce a word for you. When you ask it to, it hands that
-    single word to the text-to-speech engine already installed on your device —
-    a separate piece of software, usually supplied by the maker of your phone or
-    by Google.</p>
-    <p>The app sends nothing else and receives nothing back but the sound.
-    Whether that engine speaks entirely on your device or uses its own internet
-    connection to do it is the engine's behaviour, governed by its own privacy
-    policy and by your device's settings, not by this app. If you would rather
-    no word ever left the app, do not use the speaker button.</p>
+  <h2>Where other software is involved</h2>
+
+  <section class="card">
+    <header>
+      <span class="tile stream"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></span>
+      <h3>Reading cards aloud</h3>
+    </header>
+    <p>For a language your device has a voice for, the app can read a card's
+    term aloud. It does so through the text-to-speech engine already installed
+    on your device — a separate piece of software, usually supplied by the
+    maker of your phone or by Google.</p>
+    <p>The engine is handed the term — never the translation, never the note —
+    and nothing else. That happens when a card is added, edited or imported, so
+    a recording of it can be made and kept, and again only if that recording is
+    missing when the card is to be read. A card is read as it arrives in front
+    of you, if <strong>Auto pronounce</strong> is on in Settings, and whenever
+    you tap its speaker; both normally just play the recording.</p>
+    <p>The app receives nothing back but the sound. Whether that engine speaks
+    entirely on your device or uses its own internet connection to do it is the
+    engine's behaviour, governed by its own privacy policy and by your device's
+    settings, not by this app. Turning Auto pronounce off stops cards being
+    read as they arrive; it does not stop the recordings being made. A language
+    your device has no voice for is never handed to the engine at all.</p>
   </section>
 
-  <section>
-    <h2>Export and import</h2>
-    <p>The app can write everything you have — words, cards, and progress — into
-    a block of text, so you can move it to another device. That text is handed
-    to you and to nobody else. Where you then put it is entirely your decision,
-    and once it leaves the app this policy no longer covers it. Importing works
-    the same way in reverse: the app reads only what you paste into it.</p>
+  <section class="card">
+    <header>
+      <span class="tile translation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
+      <h3>The daily reminder</h3>
+    </header>
+    <p>The reminder is off unless you turn it on in the app's Settings, where
+    you also choose its time — 13:00 until you pick another. When it is on and
+    you have not finished the day's cards by then, the app shows a notification
+    reminding you to practise. It is decided and scheduled entirely on your
+    device: nothing is sent anywhere to arrange it, and its text is fixed — it
+    never contains your cards.</p>
+    <p>Turning it on is the only time the app asks for permission to show
+    notifications. It also holds two further permissions that Android grants
+    without asking: one to learn that the phone has restarted, so the reminder
+    can be set again, and one to vibrate when it arrives. If you refuse the
+    notification permission the reminder simply stays off and the app works
+    exactly as before; it can be turned off again at any time.</p>
   </section>
 
-  <section>
-    <h2>Children</h2>
+  <section class="card">
+    <header>
+      <span class="tile word"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20V4"/><path d="m3 8 4-4 4 4"/><path d="M17 4v16"/><path d="m13 16 4 4 4-4"/></svg></span>
+      <h3>Export and import</h3>
+    </header>
+    <p>The app can write your whole collection — languages, cards and progress,
+    along with the days you practised — into a single file, so you can keep a
+    copy or move it to another device. It asks your device's own file picker
+    where to put it, and the file goes only where you say. It is handed to you
+    and to nobody else; where you keep it afterwards is entirely your decision,
+    and once it leaves the app this policy no longer covers it.</p>
+    <p>Importing works the same way in reverse: the picker asks you for one
+    file — a backup, or a list of cards as CSV or plain text — and the app
+    reads only that one. What the picker hands over is a temporary copy, which
+    the app discards once it has been read.</p>
+  </section>
+
+  <section class="card">
+    <header>
+      <span class="tile today"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></span>
+      <h3>Your device's own backup</h3>
+    </header>
+    <p>Android can back up the data of the apps on your phone to your own
+    Google account, and can copy it across when you set up a new phone. If you
+    have that switched on in your device's settings, the system may include
+    what this app has saved — your languages, cards, progress and preferences —
+    as it does for most apps. The recordings are not included.</p>
+    <p>That copy is made by the operating system, not by this app, which still
+    sends nothing itself. It goes to your account and nobody else's; the
+    developer cannot see it. It is governed by Google's privacy policy and by
+    your device's backup settings, which is also where it is switched off.</p>
+  </section>
+
+  <h2>You and this policy</h2>
+
+  <section class="card">
+    <header>
+      <span class="tile translation"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2"/><path d="M9 9.5h.01"/><path d="M15 9.5h.01"/></svg></span>
+      <h3>Children</h3>
+    </header>
     <p>I'm Learning is suitable for children. It collects no personal
     information from anyone, of any age, and has no means of transmitting any,
     so there is nothing to gather, share, or sell.</p>
     <p>It contains no advertising, no in-app purchases, no chat, no accounts, no
     links out to other apps or websites, and no way for one user to see or
-    contact another. Words a child types are visible only on that child's own
+    contact another. Cards a child writes are visible only on that child's own
     device.</p>
     <p>Because no personal information is collected, the app does not knowingly
     collect information from children under 13, and there is nothing for a
@@ -239,36 +508,49 @@
     and the Google Play Families policy.</p>
   </section>
 
-  <section>
-    <h2>Your data and your rights</h2>
+  <section class="card">
+    <header>
+      <span class="tile stream"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg></span>
+      <h3>Your data and your rights</h3>
+    </header>
     <p>Rights such as access, correction, portability, and erasure exist to give
     you power over data somebody else is holding. Nobody is holding any of
     yours:</p>
     <ul>
       <li><strong>Access and portability</strong> — everything is already on
-      your device, and Export hands you the whole of it in readable form.</li>
-      <li><strong>Correction</strong> — you can edit or delete any word, card,
-      or language from within the app.</li>
+      your device, and Export hands you the whole collection in readable
+      form.</li>
+      <li><strong>Correction</strong> — you can edit or delete any card or
+      language from within the app.</li>
       <li><strong>Erasure</strong> — uninstalling the app removes everything it
-      stored. There is no copy anywhere else to ask about.</li>
+      stored on the device. The only copies elsewhere are ones you made
+      yourself: a file you exported, or your device's own backup if you have it
+      switched on.</li>
     </ul>
   </section>
 
-  <section>
-    <h2>Changes to this policy</h2>
+  <section class="card">
+    <header>
+      <span class="tile pairs"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <h3>Changes to this policy</h3>
+    </header>
     <p>If the app ever gains a feature that changes any of the above, this page
     will be updated before that version is published, and the date at the top
     will change with it.</p>
   </section>
 
-  <section class="contact">
-    <h2>Contact</h2>
+  <section class="card">
+    <header>
+      <span class="tile word"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m21 7.5-9 6-9-6"/></svg></span>
+      <h3>Contact</h3>
+    </header>
     <p>Questions about this policy, or about the app's handling of data, can go
-    to <strong>[your contact email]</strong>.</p>
+    to the developer by email.</p>
+    <a class="button" href="mailto:VuzykDev@proton.me"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m21 7.5-9 6-9-6"/></svg>VuzykDev@proton.me</a>
   </section>
 
   <footer>
-    <p>I'm Learning · <code>com.vuzykdev.imlearning</code></p>
+    <p>I'm Learning · VuzykDev</p>
   </footer>
 
 </div>
